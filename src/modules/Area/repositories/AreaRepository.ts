@@ -19,6 +19,22 @@ class AreaRepository implements IAreaRepository {
 
         return foundArea;
     }
+
+    public find = async () => {
+        const repository = getRepository(Area);
+
+        const areas = await repository.find();
+
+        return areas;
+    }
+
+    public delete = async (id: number) => {
+        const repository = getRepository(Area);
+
+        await repository.delete(id);
+
+        return;
+    }
 }
 
 export default AreaRepository;

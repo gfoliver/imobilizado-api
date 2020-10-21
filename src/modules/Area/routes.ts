@@ -11,4 +11,10 @@ const controller = new AreaController(service);
 
 router.post('/', controller.create);
 
+router.get('/', controller.find);
+
+router.get('/:id', controller.findById);
+
+router.delete('/:id', controller.delete);
+
 export default router;
