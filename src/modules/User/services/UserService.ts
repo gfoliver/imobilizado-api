@@ -23,8 +23,22 @@ class UserService implements IUserService {
         return {
             id: user.id,
             email: user.email,
-            name: user.name
+            name: user.name,
+            type: user.type,
+            active: user.active
         }
+    }
+
+    public findByEmail = async (email: string) => {
+        const user = await this.repository.findByEmail(email);
+
+        return user;
+    }
+
+    public approve = async (id: number) => {
+        const user = await this.repository.approve(id);
+
+        return user;
     }
 }
 

@@ -16,6 +16,8 @@ const authController = new AuthController(authService);
 
 router.post('/', controller.create);
 
+router.post('/approve', controller.approve);
+
 router.post('/login', authController.login);
 
 export default router;

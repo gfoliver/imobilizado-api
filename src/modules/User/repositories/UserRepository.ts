@@ -7,7 +7,7 @@ class UserRepository implements IUserRepository {
     async create({ name, email, password }: ICreateUserDTO) {
         const repository = getRepository(User);
 
-        const user = repository.create({ name, email, password });
+        const user = repository.create({ name, email, password, type: "employee" });
         await repository.save(user);
 
         return user;
@@ -18,6 +18,21 @@ class UserRepository implements IUserRepository {
 
         const user = await repository.findOne({ where: { email } });
 
+        return user;
+    }
+
+    public approve = async (id: number) => {
+        const repository = getRepository(User);
+
+        let user = await repository.findOne({ where: { id } });
+
+        if (!user)
+            throw new Error('User not found');
+
+        user.active = true;
+        
+        await repository.save(user);
+        
         return user;
     }
 }

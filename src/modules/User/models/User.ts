@@ -13,6 +13,12 @@ class User {
     
     @Column()
     password: string;
+
+    @Column()
+    type: "admin" | "employee";
+
+    @Column()
+    active: boolean;
 }
 
 export default User

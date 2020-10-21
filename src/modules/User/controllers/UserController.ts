@@ -1,6 +1,11 @@
 import { Request, Response } from 'express';
 import IUserController from './IUserController';
 import IUserService from '../services/UserService';
+import { decode } from 'jsonwebtoken';
+
+interface decodedData {
+    email: string;
+}
 
 class UserController implements IUserController {
     private service: IUserService;
@@ -31,6 +36,39 @@ class UserController implements IUserController {
                 message: error.message
             })
         }
+    }
+
+    public approve = async (req: Request, res: Response) => {
+        const { authorization } = req.headers;
+        const { id } = req.body;
+
+        if (!id)
+            return res.status(400).json({
+                status: false,
+                message: 'Missing id'
+            })
+
+        if (!authorization)
+            return res.status(401).json({});
+        
+        const [ type, token ] = authorization.split(' ');
+
+        const { email } = decode(token) as decodedData;
+
+        const foundUser = await this.service.findByEmail(email);
+
+        if (!foundUser)
+            return res.status(401).json({});
+
+        if (foundUser.type != "admin")
+            return res.status(401).json({});
+
+        const user = await this.service.approve(id);
+
+        return res.json({
+            status: true,
+            data: user
+        });
     }
 }
 

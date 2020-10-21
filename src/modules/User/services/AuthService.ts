@@ -17,6 +17,9 @@ class AuthService implements IAuthService {
         if (!foundUser)
             throw new Error(`User with email ${email} not found`);
 
+        if (! foundUser.active)
+            throw new Error(`User is not approved.`);
+
         const isPasswordCorrect = await compare(password, foundUser.password);
 
         if (!isPasswordCorrect)
@@ -36,7 +39,9 @@ class AuthService implements IAuthService {
             user: {
                 id: foundUser.id,
                 email: foundUser.email,
-                name: foundUser.name
+                name: foundUser.name,
+                type: foundUser.type,
+                active: foundUser.active
             }
         }
     }
