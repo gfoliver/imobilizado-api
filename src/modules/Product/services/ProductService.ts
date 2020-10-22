@@ -1,3 +1,4 @@
+import IFindProductFilters from '../dtos/IFindProductFilters';
 import Product from '../models/Product';
 import IProductRepository from '../repositories/IProductRepository';
 import IProductService from "./IProductService";
@@ -20,6 +21,18 @@ class ProductService implements IProductService {
         const product = await this.repository.create(data);
 
         return product;
+    }
+
+    public findByCode = async (code: string) => {
+        const product = await this.repository.findByCode(code);
+
+        return product;
+    }
+
+    public find = async (filters: IFindProductFilters) => {
+        const products = await this.repository.find(filters);
+
+        return products;
     }
 }
 

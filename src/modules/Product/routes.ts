@@ -11,4 +11,8 @@ const controller = new ProductController(service);
 
 router.post('/', controller.create);
 
+router.get('/', controller.find);
+
+router.get('/:code', controller.findByCode);
+
 export default router;

@@ -30,6 +30,44 @@ class ProductController implements IProductController {
             });
         }
     }
+
+    public find = async (req: Request, res: Response) => {
+        const filters = req.query;
+
+        try {
+            const response = await this.service.find(filters);
+
+            return res.json({
+                status: true,
+                data: response
+            });
+        }
+        catch(error) {
+            return res.status(500).json({
+                status: false,
+                message: error.message
+            });
+        }
+    }
+
+    public findByCode = async (req: Request, res: Response) => {
+        const { code } = req.params;
+
+        try {
+            const product = await this.service.findByCode(code);
+
+            return res.status(product ? 200 : 404).json({
+                status: !!product,
+                data: product
+            });
+        }
+        catch(error) {
+            return res.status(500).json({
+                status: false,
+                message: error.message
+            })
+        }
+    }
 }
 
 export default ProductController;
