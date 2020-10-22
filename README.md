@@ -8,6 +8,8 @@
 * Rodar `npm install`;
 * Copiar o arquivo `ormconfig.example.json` para um novo arquivo chamado `ormconfig.json`;
 * Editar esse arquivo `ormconfig.json` com as configurações do seu MySQL;
+* Copiar o arquivo `.env.example` para um novo arquivo chamado `.env`;
+* Editar esse arquivo `.env` inserindo uma string no JWT_SECRET;
 * Rodar as migrations com o comando `npm run typeorm migration:run`;
 * Rodar as seeds com o comando `npm run seed:run`;
 * Iniciar o servidor local com o comando `npm run dev`;
