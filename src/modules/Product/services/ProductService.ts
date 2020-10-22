@@ -34,6 +34,31 @@ class ProductService implements IProductService {
 
         return products;
     }
+
+    public delete = async (code: string) => {
+        const foundProduct = await this.repository.findByCode(code);
+
+        if (!foundProduct)
+            throw new Error(`Product with code ${code} not found`);
+
+        await this.repository.delete(code);
+
+        return;
+    }
+
+    public update = async (product: Partial<Product>) => {
+        if (!product.code)
+            throw new Error('Code not specified');
+
+        const foundProduct = await this.repository.findByCode(product.code);
+
+        if (!foundProduct)
+            throw new Error(`Product with code ${product.code} not found`);
+
+        const newProduct = await this.repository.update(product);
+
+        return newProduct;
+    }
 }
 
 export default ProductService;

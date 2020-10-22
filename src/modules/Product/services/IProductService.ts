@@ -8,4 +8,8 @@ export default interface IProductService {
     findByCode(code: string): Promise<Product | undefined>;
 
     find(filters: IFindProductFilters): Promise<IFindProductResponse>;
+
+    delete(code: string): Promise<void>;
+
+    update(product: Partial<Product>): Promise<Product>;
 }

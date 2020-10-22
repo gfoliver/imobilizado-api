@@ -60,6 +60,24 @@ class ProductRepository implements IProductRepository {
             maxValue: Number(Object.values(maxValueRaw)[0])
         };
     }
+
+    public delete = async (code: string) => {
+        const repository = getRepository(Product);
+
+        await repository.delete(code);
+
+        return;
+    }
+
+    public update = async (product: Partial<Product>) => {
+        const repository = getRepository(Product);
+
+        await repository.save(product);
+
+        const newProduct = await repository.findOne({where: product})
+
+        return newProduct as Product;
+    }
 }
 
 export default ProductRepository;

@@ -68,6 +68,43 @@ class ProductController implements IProductController {
             })
         }
     }
+
+    public delete = async (req: Request, res: Response) => {
+        const { code } = req.params;
+
+        try {
+            await this.service.delete(code);
+
+            return res.json({
+                status: true
+            });
+        }
+        catch(error) {
+            return res.status(400).json({
+                status: false,
+                error: error.message
+            })
+        }
+    }
+
+    public update = async (req: Request, res: Response) => {
+        const data = req.body;
+
+        try {
+            const product = await this.service.update(data);
+
+            return res.json({
+                status: true,
+                data: product
+            })
+        }
+        catch(error) {
+            return res.status(400).json({
+                status: false,
+                message: error.message
+            })
+        }
+    }
 }
 
 export default ProductController;
