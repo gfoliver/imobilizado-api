@@ -10,4 +10,6 @@ export default interface IProductController {
     delete(req: Request, res: Response): Promise<Response>;
 
     update(req: Request, res: Response): Promise<Response>;
+
+    patrimony(req: Request, res: Response): Promise<Response>;
 }

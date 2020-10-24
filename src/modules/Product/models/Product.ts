@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryColumn } from 'typeorm';
+import { Entity, Column, PrimaryColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity('products')
 class Product {
@@ -22,6 +22,12 @@ class Product {
     
     @Column()
     area_id: number;
+
+    @CreateDateColumn()
+    created_at: Date
+    
+    @UpdateDateColumn()
+    updated_at: Date
 }
 
 export default Product

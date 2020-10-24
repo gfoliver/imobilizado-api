@@ -12,7 +12,9 @@ export class CreateProductsTable1603155814207 implements MigrationInterface {
                 { name: 'amount', type: 'INT', isNullable: false, },
                 { name: 'image', type: 'VARCHAR(45)' },
                 { name: 'description', type: 'TEXT' },
-                { name: 'area_id', type: 'INT', isNullable: false }
+                { name: 'area_id', type: 'INT', isNullable: true },
+                { name: 'created_at', type: 'timestamp', default: 'now()' },
+                { name: 'updated_at', type: 'timestamp', default: 'now()' },
             ]
         }));
     }

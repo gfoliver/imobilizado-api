@@ -41,7 +41,9 @@ class AuthService implements IAuthService {
                 email: foundUser.email,
                 name: foundUser.name,
                 type: foundUser.type,
-                active: foundUser.active
+                active: foundUser.active,
+                created_at: foundUser.created_at,
+                updated_at: foundUser.updated_at,
             }
         }
     }

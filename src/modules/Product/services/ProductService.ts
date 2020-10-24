@@ -25,14 +25,19 @@ class ProductService implements IProductService {
 
     public findByCode = async (code: string) => {
         const product = await this.repository.findByCode(code);
-
-        return product;
+        const storageUrl = process.env.APP_URL + '/storage/';
+        
+        return product ? {...product, image: storageUrl + product.image} : product;
     }
 
     public find = async (filters: IFindProductFilters) => {
         const products = await this.repository.find(filters);
-
-        return products;
+        const storageUrl = process.env.APP_URL + '/storage/';
+        
+        return {
+            ...products,
+            products: products.products.map(p => ({...p, image: storageUrl + p.image}))
+        };
     }
 
     public delete = async (code: string) => {
@@ -58,6 +63,12 @@ class ProductService implements IProductService {
         const newProduct = await this.repository.update(product);
 
         return newProduct;
+    }
+
+    public patrimony = async () => {
+        const patrimony = this.repository.patrimony();
+
+        return patrimony;
     }
 }
 

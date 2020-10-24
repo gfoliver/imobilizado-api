@@ -12,7 +12,9 @@ export class CreateUsersTable1603151156199 implements MigrationInterface {
                 { name: 'email', type: 'VARCHAR(45)', isNullable: false, isUnique: true },
                 { name: 'password', type: 'VARCHAR(70)', isNullable: false },
                 { name: 'type', type: 'VARCHAR(10)', isNullable: false },
-                { name: 'active', type: 'BOOLEAN', isNullable: false }
+                { name: 'active', type: 'BOOLEAN', isNullable: false },
+                { name: 'created_at', type: 'timestamp', default: 'now()' },
+                { name: 'updated_at', type: 'timestamp', default: 'now()' },
             ]
         }))
     }

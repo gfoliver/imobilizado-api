@@ -1,6 +1,7 @@
 import Product from '../models/Product';
 import IFindProductFilters from '../dtos/IFindProductFilters';
 import IFindProductResponse from '../dtos/IFindProductResponse';
+import IPatrimonyResponse from '../dtos/IPatrimonyResponse';
 
 export default interface IProductRepository {
     create(data: Product): Promise<Product>;
@@ -12,4 +13,6 @@ export default interface IProductRepository {
     delete(code: string): Promise<void>;
 
     update(product: Partial<Product>): Promise<Product>;
+
+    patrimony(): Promise<IPatrimonyResponse>;
 }

@@ -11,12 +11,13 @@ class ProductController implements IProductController {
 
     public create = async (req: Request, res: Response) => {
         const data = req.body;
+        const { filename } = req.file
 
         try {
-            if (!data.code || !data.name || !data.value || !data.amount || !data.image || !data.description || !data.area_id)
+            if (!data.code || !data.name || !data.value || !data.amount || !data.description || !data.area_id)
                 throw new Error('Missing fields');
 
-            const product = await this.service.create(data);
+            const product = await this.service.create({ ...data, image: filename });
 
             return res.json({
                 status: true,
@@ -89,13 +90,31 @@ class ProductController implements IProductController {
 
     public update = async (req: Request, res: Response) => {
         const data = req.body;
-
+        const { filename } = req.file
+        
         try {
-            const product = await this.service.update(data);
+            const product = await this.service.update({...data, image: filename});
 
             return res.json({
                 status: true,
                 data: product
+            })
+        }
+        catch(error) {
+            return res.status(400).json({
+                status: false,
+                message: error.message
+            })
+        }
+    }
+
+    public patrimony = async (req: Request, res: Response) => {
+        try {
+            const patrimony = await this.service.patrimony();
+
+            return res.json({
+                status: true,
+                data: patrimony
             })
         }
         catch(error) {

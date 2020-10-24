@@ -78,6 +78,19 @@ class ProductRepository implements IProductRepository {
 
         return newProduct as Product;
     }
+
+    public patrimony = async () => {
+        const repository = getRepository(Product);
+        
+        const amount = await repository.createQueryBuilder('product').select('COUNT(product.code)').getRawOne();
+        const total = await repository.createQueryBuilder('product').select('SUM(product.value)').getRawOne();
+
+        return {
+            amount: Number(Object.values(amount)[0]),
+            total: Number(Object.values(total)[0]),
+        }
+
+    }
 }
 
 export default ProductRepository;
