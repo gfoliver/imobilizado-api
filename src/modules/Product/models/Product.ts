@@ -23,6 +23,9 @@ class Product {
     @Column()
     area_id: number;
 
+    @Column()
+    unity_id: number;
+
     @CreateDateColumn()
     created_at: Date
     

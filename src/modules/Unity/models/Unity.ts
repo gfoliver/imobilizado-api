@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
-@Entity('areas')
-class Area {
+@Entity('unities')
+class Unity {
     @PrimaryGeneratedColumn('increment')
     id: number;
 
@@ -15,4 +15,4 @@ class Area {
     updated_at: Date
 }
 
-export default Area;
+export default Unity;
