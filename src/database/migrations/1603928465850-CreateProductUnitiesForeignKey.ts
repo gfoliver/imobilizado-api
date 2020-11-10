@@ -3,8 +3,7 @@ import {MigrationInterface, QueryRunner, TableForeignKey} from "typeorm";
 export class CreateProductUnitiesForeignKey1603928465850 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.createForeignKey("products", new TableForeignKey({
-            name: "productUnity",
+        await queryRunner.createForeignKey("areas", new TableForeignKey({            
             columnNames: ["unity_id"],
             referencedColumnNames: ["id"],
             referencedTableName: "unities",
@@ -13,7 +12,7 @@ export class CreateProductUnitiesForeignKey1603928465850 implements MigrationInt
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropForeignKey("products", "productUnities");
+        await queryRunner.dropForeignKey("areas", "productUnities");
     }
 
 }

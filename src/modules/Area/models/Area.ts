@@ -8,6 +8,9 @@ class Area {
     @Column()
     name: string;
 
+    @Column()
+    unity_id: number;
+
     @CreateDateColumn()
     created_at: Date
     

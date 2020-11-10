@@ -1,5 +1,6 @@
 import IAreaRepository from "../repositories/IAreaRepository";
 import IAreaService from "./IAreaService";
+import ICreateAreaDTO from "../dtos/ICreateAreaDTO";
 
 class AreaService implements IAreaService {
     private repository: IAreaRepository;
@@ -8,8 +9,8 @@ class AreaService implements IAreaService {
         this.repository = repository;
     }
 
-    public create = async (name: string) => {
-        const area = await this.repository.create(name);
+    public create = async (data: ICreateAreaDTO) => {
+        const area = await this.repository.create(data);
 
         return area;
     }

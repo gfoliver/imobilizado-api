@@ -1,12 +1,13 @@
 import Area from '../models/Area';
 import { getRepository } from "typeorm";
 import IAreaRepository from "./IAreaRepository";
+import ICreateAreaDTO from "../dtos/ICreateAreaDTO";
 
 class AreaRepository implements IAreaRepository {
-    public create = async (name: string) => {
+    public create = async (data: ICreateAreaDTO) => {
         const repository = getRepository(Area);
 
-        const area = repository.create({ name });
+        const area = repository.create(data);
         await repository.save(area);
 
         return area;

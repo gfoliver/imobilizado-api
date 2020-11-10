@@ -1,7 +1,9 @@
 import Area from "../models/Area";
+import ICreateAreaDTO from "../dtos/ICreateAreaDTO";
+
 
 export default interface IAreaService {
-    create(name: string): Promise<Area>;
+    create(data: ICreateAreaDTO): Promise<Area>;
 
     findById(id: number): Promise<Area | undefined>;
 

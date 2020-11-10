@@ -10,13 +10,13 @@ class AreaController implements IAreaController {
     }
 
     public create = async (req: Request, res: Response) => {
-        const { name } = req.body;
+        const data = req.body;
 
         try {
-            if (! name)
+            if (!data.name || !data.unity_id)
                 throw new Error('Missing fields');
 
-            const area = await this.service.create(name);
+            const area = await this.service.create(data);
 
             return res.json({
                 status: true,
