@@ -42,6 +42,18 @@ class UserService implements IUserService {
 
         return user;
     }
+
+    public find = async () => {
+        return this.repository.find();
+    }
+
+    public findById = async (id: number) => {
+        return this.repository.findById(id);
+    }
+
+    public delete = async (id: number) => {
+        return this.repository.delete(id);
+    }
 }
 
 export default UserService;

@@ -70,6 +70,36 @@ class UserController implements IUserController {
             data: user
         });
     }
+
+    public find = async (req: Request, res: Response) => {
+        const users = await this.service.find();
+
+        return res.json({
+            status: true,
+            data: users
+        })
+    }
+
+    public findById = async (req: Request, res: Response) => {
+        const { id } = req.params;
+
+        const user = await this.service.findById(Number(id));
+
+        return res.json({
+            status: !!user,
+            data: user
+        });
+    }
+
+    public delete = async(req: Request, res: Response) => {
+        const { id } = req.params;
+
+        await this.service.delete(Number(id));
+
+        return res.json({
+            status: true,
+        });
+    }
 }
 
 export default UserController;

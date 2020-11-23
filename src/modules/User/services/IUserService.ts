@@ -7,4 +7,8 @@ export default interface IUserService {
     findByEmail(email: string): Promise<User | undefined>;
 
     approve(id: number): Promise<User>;
+
+    findById(id: number): Promise<Partial<User> | undefined>;
+
+    delete(id: number): Promise<void>;
 }
