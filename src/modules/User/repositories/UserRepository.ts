@@ -4,10 +4,10 @@ import User from '../models/User';
 import IUserRepository from './IUserRepository';
 
 class UserRepository implements IUserRepository {
-    async create({ name, email, password }: ICreateUserDTO) {
+    async create({ name, email, password, type }: ICreateUserDTO) {
         const repository = getRepository(User);
 
-        const user = repository.create({ name, email, password, type: "employee" });
+        const user = repository.create({ name, email, password, type, active: false});
         await repository.save(user);
 
         return user;

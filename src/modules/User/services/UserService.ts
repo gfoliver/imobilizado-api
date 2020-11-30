@@ -10,7 +10,7 @@ class UserService implements IUserService {
         this.repository = repository;
     }
 
-    async create({ name, email, password }: ICreateUserDTO) {
+    async create({ name, email, password, type }: ICreateUserDTO) {
         const foundUserWithSameEmail = await this.repository.findByEmail(email);
 
         if (foundUserWithSameEmail)
@@ -18,7 +18,7 @@ class UserService implements IUserService {
         
         const hashedPassword = await hash(password, 8);
 
-        const user = await this.repository.create({ name, email, password: hashedPassword });
+        const user = await this.repository.create({ name, email, password: hashedPassword, type });
 
         return {
             id: user.id,

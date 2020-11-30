@@ -15,14 +15,14 @@ class UserController implements IUserController {
     }
 
     public create = async (req: Request, res: Response) => {
-        const { name, email, password } = req.body;
+        const { name, email, password, type } = req.body;
 
         try {
             if (!name || !email || !password) {
                 throw new Error('Missing fields');
             }
 
-            const user = await this.service.create({ name, email, password });
+            const user = await this.service.create({ name, email, password, type });
 
             return res.json({
                 status: true,
