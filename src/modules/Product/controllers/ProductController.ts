@@ -14,7 +14,7 @@ class ProductController implements IProductController {
         const { filename } = req.file
 
         try {
-            if (!data.code || !data.name || !data.value || !data.amount || !data.description || !data.area_id || !data.unity_id)
+            if (!data.code || !data.name || !data.value || !data.amount || !data.description || !data.area_id)
                 throw new Error('Missing fields');
 
             const product = await this.service.create({ ...data, image: filename });
