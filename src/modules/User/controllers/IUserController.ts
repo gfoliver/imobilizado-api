@@ -10,4 +10,6 @@ export default interface IUserController {
     findById(req: Request, res: Response): Promise<Response>;
 
     delete(req: Request, res: Response): Promise<Response>;
+
+    pendingApproval(req: Request, res: Response): Promise<Response>;
 }

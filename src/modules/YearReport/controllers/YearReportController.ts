@@ -31,14 +31,14 @@ class YearReport implements IYearReport {
         }
     }
 
-    public findById = async (req: Request, res: Response) => {
-        const { id } = req.params;
+    public findByYear = async (req: Request, res: Response) => {
+        const { year } = req.params;
 
         try {
-            if (!id)
-                throw new Error('Missing id');
+            if (!year)
+                throw new Error('Missing year');
 
-            const yearReport = await this.service.findById(Number(id));
+            const yearReport = await this.service.findByYear(Number(year));
 
             if (!yearReport)
                 return res.status(404).json({

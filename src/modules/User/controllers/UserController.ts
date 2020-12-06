@@ -100,6 +100,15 @@ class UserController implements IUserController {
             status: true,
         });
     }
+
+    public pendingApproval = async(req: Request, res: Response) => {
+        const users = await this.service.pendingApproval();
+
+        return res.json({
+            status: true,
+            data: users
+        });
+    }
 }
 
 export default UserController;

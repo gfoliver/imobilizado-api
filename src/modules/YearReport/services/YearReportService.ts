@@ -15,8 +15,8 @@ class YearReportService implements IYearReportService {
         return yearReport;
     }
 
-    public findById = async (id: number) => {
-        const yearReport = await this.repository.findById(id);
+    public findByYear = async (year: number) => {
+        const yearReport = await this.repository.findByYear(year);
 
         return yearReport;
     }
@@ -28,11 +28,6 @@ class YearReportService implements IYearReportService {
     }
 
     public delete = async (id: number) => {
-        const foundYearReport = await this.repository.findById(id);
-
-        if (!foundYearReport)
-            throw new Error(`Year Report with id ${id} not found`);
-
         await this.repository.delete(id);
 
         return;

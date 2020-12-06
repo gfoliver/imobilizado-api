@@ -54,6 +54,10 @@ class UserService implements IUserService {
     public delete = async (id: number) => {
         return this.repository.delete(id);
     }
+
+    public pendingApproval = async () => {
+        return this.repository.pendingApproval();
+    }
 }
 
 export default UserService;

@@ -12,7 +12,7 @@ class YearReport {
     cpf: string;
 
     @CreateDateColumn()
-    created_at: Date    
+    created_at: Date;
 }
 
 export default YearReport;

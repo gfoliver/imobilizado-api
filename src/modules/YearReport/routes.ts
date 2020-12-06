@@ -13,7 +13,7 @@ router.post('/', controller.create);
 
 router.get('/', controller.find);
 
-router.get('/:id', controller.findById);
+router.get('/:year', controller.findByYear);
 
 router.delete('/:id', controller.delete);
 

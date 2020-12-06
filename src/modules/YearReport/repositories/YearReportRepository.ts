@@ -1,5 +1,5 @@
 import YearReport from '../models/YearReport';
-import { getRepository } from "typeorm";
+import { getRepository, LessThan, MoreThan } from "typeorm";
 import IYearReportRepository from "./IYearReportRepository";
 import ICreateYearReportDTO from "../dtos/ICreateYearReportDTO";
 
@@ -13,10 +13,10 @@ class YaerReportRepository implements IYearReportRepository {
         return yearReport;
     }
 
-    public findById = async (id: number) => {
+    public findByYear = async (year: number) => {
         const repository = getRepository(YearReport);
 
-        const foundYearReport = await repository.findOne({ where: { id } });
+        const foundYearReport = await repository.findOne({ where: { created_at: MoreThan(`${year}-01-01 00:00:00`) && LessThan(`${year}-12-31 23:59:59`) } });
 
         return foundYearReport;
     }

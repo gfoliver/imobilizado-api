@@ -6,11 +6,13 @@ export default interface IUserRepository {
 
     findByEmail(email: string): Promise<User | undefined>;
 
-    approve(id: number): Promise<User>;
+    approve(id: number): Promise<Partial<User>>;
 
     find(): Promise<Partial<User>[]>;
 
     findById(id: number): Promise<Partial<User> | undefined>;
 
     delete(id: number): Promise<void>;
+
+    pendingApproval(): Promise<Partial<User>[]>;
 }

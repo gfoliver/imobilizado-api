@@ -9,7 +9,7 @@ export class CreateYearReportTable1606764593902 implements MigrationInterface {
                 { name: 'id', type: 'INT', isPrimary: true, isGenerated: true, generationStrategy: 'increment' },
                 { name: 'name', type: 'VARCHAR(45)', isNullable: false },
                 { name: 'cpf', type: 'VARCHAR(11)', isNullable: false },
-                { name: 'accepted_at', type: 'timestamp', default: 'now()' },
+                { name: 'created_at', type: 'timestamp', default: 'now()' },
             ]
         }));
     }

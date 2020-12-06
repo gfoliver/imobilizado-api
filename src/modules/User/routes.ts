@@ -17,6 +17,8 @@ const authController = new AuthController(authService);
 
 router.get('/', verifyToken, controller.find);
 
+router.get('/pending', verifyToken, controller.pendingApproval);
+
 router.get('/:id', verifyToken, controller.findById);
 
 router.delete('/:id', verifyToken, controller.delete);

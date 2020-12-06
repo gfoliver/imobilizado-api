@@ -33,7 +33,7 @@ class UserRepository implements IUserRepository {
         
         await repository.save(user);
         
-        return user;
+        return { id: user.id, active: user.active };
     }
 
     public find = async () => {
@@ -68,6 +68,18 @@ class UserRepository implements IUserRepository {
         await repository.delete(id);
 
         return;
+    }
+
+    public pendingApproval = async () => {
+        const repository = getRepository(User);
+
+        const users = await repository.find({where: { active: false }});
+
+        return users.map(user => ({
+            id: user.id,
+            name: user.name,
+            email: user.email
+        }));
     }
 }
 
